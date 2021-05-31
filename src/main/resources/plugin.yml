@@ -1,0 +1,9 @@
+name: EasterEggs
+version: ${project.version}
+main: it.aonoasgard.eastereggs.Eastereggs
+api-version: 1.16
+prefix: Caricamento Completato
+loadbefore: [ Inizio Caricamento... ]
+authors: [ AoNoAsgard ]
+description: plugin per easteregg nascosti
+website: aonoasgard.it
