@@ -1,5 +1,6 @@
 package it.aonoasgard.eastereggs.events;
 
+import it.aonoasgard.eastereggs.inits.JsonInits;
 import it.aonoasgard.eastereggs.items.SkullUtilities;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.LivingEntity;
@@ -18,12 +19,10 @@ public class TesteDropListener implements Listener {
     public void onMobDeath(EntityDeathEvent event){
         LivingEntity entity = event.getEntity();
         Random rand = new Random();
-        Bukkit.getLogger().info("Mob Ucciso");
         if (entity instanceof Monster){
-            Bukkit.getLogger().info("Mostro Ucciso");
             if(rand.nextInt(100)==50) {
                 Bukkit.getLogger().info("Fortuna");
-                List<ItemStack> teste = SkullUtilities.teste;
+                List<ItemStack> teste = JsonInits.su.teste;
                 int nteste = teste.size();
                 if (nteste < 1) {
                     Bukkit.getLogger().info("minore di 1");
