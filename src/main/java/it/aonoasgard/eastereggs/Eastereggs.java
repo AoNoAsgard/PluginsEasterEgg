@@ -8,13 +8,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 
 public final class Eastereggs extends JavaPlugin {
-    public JsonIstructions FileTeste ;
+    public JsonIstructions fileTeste ;
 
     @Override
     public void onEnable() {
-        FileTeste = new JsonIstructions(new File("plugins/EasterEggsAoNoAsgard/Teste.json"));
-        JsonInits.initialize(FileTeste);
-        EventsInitializer.initialize(this);
+        fileTeste = new JsonIstructions(new File("plugins/EasterEggsAoNoAsgard/Teste.json"));
+        JsonInits.initialize(fileTeste);
+        //EventsInitializer.initialize(this);
 
 
     }

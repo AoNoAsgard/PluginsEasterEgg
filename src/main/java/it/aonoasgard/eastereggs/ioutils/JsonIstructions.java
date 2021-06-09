@@ -2,6 +2,7 @@ package it.aonoasgard.eastereggs.ioutils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import it.aonoasgard.eastereggs.models.TestaBase;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -48,18 +49,17 @@ public class JsonIstructions {
     }
 
     public void initialize(){
-        defaults.put("MyString","Some String");
 
-        defaults.put("MyNumber",1337);
         JSONObject myObject = new JSONObject();
-        myObject.put("Test","test");
-        myObject.put("Test2","test2");
-        defaults.put("MyObject",myObject);
-
         JSONArray myArray = new JSONArray();
-        myArray.add("Valore1");
-        myArray.add("Valore2");
-        defaults.put("MyArray",myArray);
+        JSONArray lore = new JSONArray();
+
+        lore.add(ChatColor.WHITE+"Conservami");
+        lore.add(ChatColor.WHITE+"ho un utilizzo");
+
+        myArray.add(testeToJson(new TestaBase("AoNoAsgard",ChatColor.GOLD+"Token Di AoNoAsgard",lore,true)));
+        myObject.put("Teste",myArray);
+        defaults.put("ConfigTeste",myObject);
 
     }
 
@@ -141,23 +141,24 @@ public class JsonIstructions {
     }
 
 
-    public static JSONObject locToJson(Location loc) {
+    public static JSONObject testeToJson(TestaBase testa) {
         JSONObject jso = new JSONObject();
-        jso.put("world", loc.getWorld().getName());
-        jso.put("x", loc.getX());
-        jso.put("y", loc.getY());
-        jso.put("z", loc.getZ());
-        jso.put("yaw", loc.getYaw());
-        jso.put("pitch", loc.getPitch());
+        jso.put("username", testa.getUsername());
+        jso.put("titolo", testa.getTitolo());
+        jso.put("lore", testa.getLore());
+        jso.put("droppable", testa.getDroppable());
         return jso;
     }
-    public static Location jsonToLoc(JSONObject obj) {
-        return new Location(Bukkit.getWorld(obj.get("world").toString()),
-                Double.parseDouble(obj.get("x").toString()),
-                Double.parseDouble(obj.get("y").toString()),
-                Double.parseDouble(obj.get("z").toString()),
-                Float.parseFloat(obj.get("yaw").toString()),
-                Float.parseFloat(obj.get("pitch").toString()));
+    public static TestaBase jsonToTesta(JSONObject obj) {
+        try {
+            return new TestaBase(obj.get("username").toString(),
+                    obj.get("titolo").toString(),
+                    (JSONArray) obj.get("lore"),
+                    (Boolean) obj.get("droppable"));
+        }catch (Exception exc){
+            exc.printStackTrace();
+            return null;
+        }
     }
 
 }

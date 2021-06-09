@@ -23,6 +23,12 @@ public class SkullUtilities {
             ItemStack playerhead = new ItemStack(Material.PLAYER_HEAD ,1 );
             SkullMeta skull =(SkullMeta) playerhead.getItemMeta();
             skull.setOwningPlayer(Bukkit.getPlayer(nome));
+            try {
+                Bukkit.getLogger().info(  Bukkit.getPlayer(nome).getClass().getName());
+
+            }catch (NullPointerException exc){
+                Bukkit.getLogger().info("NullPointerException nel getPlayer");
+            }
             playerhead.setItemMeta(skull);
             ItemMeta im = playerhead.getItemMeta();
             if(nome.equals("AoNoAsgard")){
