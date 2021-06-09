@@ -57,7 +57,7 @@ public class JsonIstructions {
         lore.add(ChatColor.WHITE+"Conservami");
         lore.add(ChatColor.WHITE+"ho un utilizzo");
 
-        myArray.add(testeToJson(new TestaBase("AoNoAsgard",ChatColor.GOLD+"Token Di AoNoAsgard",lore,true)));
+        myArray.add(testeToJson(new TestaBase("AoNoAsgard",ChatColor.GOLD+"Token Di AoNoAsgard",lore,10)));
         myObject.put("Teste",myArray);
         defaults.put("ConfigTeste",myObject);
 
@@ -147,6 +147,7 @@ public class JsonIstructions {
         jso.put("titolo", testa.getTitolo());
         jso.put("lore", testa.getLore());
         jso.put("droppable", testa.getDroppable());
+        jso.put("droprate", testa.getDroprate());
         return jso;
     }
     public static TestaBase jsonToTesta(JSONObject obj) {
@@ -154,7 +155,8 @@ public class JsonIstructions {
             return new TestaBase(obj.get("username").toString(),
                     obj.get("titolo").toString(),
                     (JSONArray) obj.get("lore"),
-                    (Boolean) obj.get("droppable"));
+                    (Boolean) obj.get("droppable"),
+                    (Integer) obj.get("droprate"));
         }catch (Exception exc){
             exc.printStackTrace();
             return null;

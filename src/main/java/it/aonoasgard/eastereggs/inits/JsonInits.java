@@ -13,8 +13,8 @@ public class JsonInits {
         JSONArray array = fileTeste.getArray("Usernames");
         fileTeste.setArray("Usernames",array);
          **/
-        fileTeste.initialize();
-        Bukkit.getLogger().info( ( (Boolean) fileTeste.save()).toString());
-        //su = new SkullUtilities(fileTeste);
+        //fileTeste.initialize();
+        //Bukkit.getLogger().info( ( (Boolean) fileTeste.save()).toString());
+        su = new SkullUtilities(fileTeste);
     }
 }
