@@ -2,6 +2,7 @@ package it.aonoasgard.eastereggs.events;
 
 import it.aonoasgard.eastereggs.inits.JsonInits;
 import it.aonoasgard.eastereggs.items.SkullUtilities;
+import it.aonoasgard.eastereggs.models.TestaCompleta;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
@@ -22,13 +23,13 @@ public class TesteDropListener implements Listener {
         if (entity instanceof Monster){
             if(rand.nextInt(100)==50) {
                 Bukkit.getLogger().info("Fortuna");
-                List<ItemStack> teste = JsonInits.su.teste;
+                List<TestaCompleta> teste = JsonInits.su.teste;
                 int nteste = teste.size();
                 if (nteste < 1) {
                     Bukkit.getLogger().info("minore di 1");
                     return;
                 }
-                entity.getLocation().getWorld().dropItem(entity.getLocation(), teste.get(rand.nextInt(nteste)).clone());
+                //entity.getLocation().getWorld().dropItem(entity.getLocation(), teste.get(rand.nextInt(nteste)).clone());
             }
         }
     }

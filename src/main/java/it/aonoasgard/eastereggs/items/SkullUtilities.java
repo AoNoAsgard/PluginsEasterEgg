@@ -1,6 +1,8 @@
 package it.aonoasgard.eastereggs.items;
 
 import it.aonoasgard.eastereggs.ioutils.JsonIstructions;
+import it.aonoasgard.eastereggs.models.TestaBase;
+import it.aonoasgard.eastereggs.models.TestaCompleta;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -13,10 +15,10 @@ import org.json.simple.JSONObject;
 import java.util.*;
 
 public class SkullUtilities {
-    public List<ItemStack> teste;
+    public List<TestaCompleta> teste;
 
     public SkullUtilities(JsonIstructions fileTeste){
-        teste = new ArrayList<ItemStack>();
+        teste = new ArrayList<TestaCompleta>();
         JSONObject jobj = fileTeste.getObject("ConfigTeste");
         JSONArray jarray = (JSONArray) jobj.get("Teste");
 
@@ -33,25 +35,47 @@ public class SkullUtilities {
 
             }catch (NullPointerException exc){
                 Bukkit.getLogger().warning("NullPointerException nel getPlayer");
+
             }
             playerhead.setItemMeta(skull);
             ItemMeta im = playerhead.getItemMeta();
-
+            String titolo = null;
             try{
-                im.setDisplayName(confTesta.get("titolo").toString());
-            }catch(Exception exc){ }
-
+                titolo = confTesta.get("titolo").toString();
+                im.setDisplayName(titolo);
+            }catch(Exception exc){
+                im.setDisplayName(username);
+                titolo = username;
+            }
+            ArrayList<String> lore = new ArrayList<String>();
             try{
-                im.setLore((ArrayList) confTesta.get("lore"));
-            }catch (Exception exc){  }
+                lore = (ArrayList) confTesta.get("lore");
+                im.setLore(lore);
+            }catch (Exception exc){
+
+            }
 
             playerhead.setItemMeta(im);
-            teste.add(playerhead);
 
+            Boolean droppable = null;
+            try {
+               droppable = (Boolean) confTesta.get("droppable");
+            }catch (Exception exc){
+                droppable = false;
+            }
 
+            int droprate ;
 
+            try {
+                droprate = (Integer) confTesta.get("droprate");
+            }catch (Exception exc){
+                droprate = -1;
+            }
 
+            TestaCompleta testa = new TestaCompleta(username,titolo,lore ,droppable, droprate);
+            testa.setItem(playerhead);
 
+            teste.add(testa);
 
         }
 

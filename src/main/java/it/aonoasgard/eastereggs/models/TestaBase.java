@@ -3,24 +3,25 @@ package it.aonoasgard.eastereggs.models;
 import org.bukkit.inventory.ItemStack;
 import org.json.simple.JSONArray;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TestaBase {
     private String username;
     private String titolo;
-    private JSONArray lore;
+    private ArrayList<String> lore;
     private Boolean droppable;
     private int droprate;
 
 
-    public TestaBase(String username, String titolo, JSONArray lore, Boolean droppable){
+    public TestaBase(String username, String titolo, ArrayList<String> lore, Boolean droppable){
         this.username = username;
         this.titolo = titolo;
         this.lore = lore;
         this.droppable = droppable;
         this.droprate = -1;
     }
-    public TestaBase(String username, String titolo, JSONArray lore, Boolean droppable,int droprate){
+    public TestaBase(String username, String titolo, ArrayList<String> lore, Boolean droppable,int droprate){
         this.username = username;
         this.titolo = titolo;
         this.lore = lore;
@@ -28,7 +29,7 @@ public class TestaBase {
         this.droprate = droprate;
     }
 
-    public TestaBase(String username, String titolo, JSONArray lore,  int droprate){
+    public TestaBase(String username, String titolo, ArrayList<String> lore,  int droprate){
         this.username = username;
         this.titolo = titolo;
         this.lore = lore;
@@ -40,7 +41,7 @@ public class TestaBase {
         return titolo;
     }
 
-    public JSONArray getLore() {
+    public ArrayList<String> getLore() {
         return lore;
     }
 
