@@ -21,14 +21,16 @@ public class TesteDropListener implements Listener {
         LivingEntity entity = event.getEntity();
         Random rand = new Random();
         if (entity instanceof Monster){
-            if(rand.nextInt(100)==50) {
-                Bukkit.getLogger().info("Fortuna");
-                List<TestaCompleta> teste = JsonInits.su.teste;
-                int nteste = teste.size();
-                if (nteste < 1) {
-                    Bukkit.getLogger().info("minore di 1");
-                    return;
+
+            List<TestaCompleta> teste = JsonInits.su.teste;
+            for(TestaCompleta testa: teste){
+                if(testa.getDroppable()){
+                    if(rand.nextInt(1000)==testa.getDroprate()) {
+                        Bukkit.getLogger().info("Fortuna");
+
+                        entity.getLocation().getWorld().dropItem(entity.getLocation(), testa.getItem().clone());
                 }
+            }
                 //entity.getLocation().getWorld().dropItem(entity.getLocation(), teste.get(rand.nextInt(nteste)).clone());
             }
         }

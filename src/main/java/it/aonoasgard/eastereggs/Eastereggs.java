@@ -14,7 +14,7 @@ public final class Eastereggs extends JavaPlugin {
     public void onEnable() {
         fileTeste = new JsonIstructions(new File("plugins/EasterEggsAoNoAsgard/Teste.json"));
         JsonInits.initialize(fileTeste);
-        //EventsInitializer.initialize(this);
+        EventsInitializer.initialize(this);
 
 
     }
