@@ -3,6 +3,7 @@ package it.aonoasgard.eastereggs.items;
 import it.aonoasgard.eastereggs.ioutils.JsonIstructions;
 import it.aonoasgard.eastereggs.models.TestaBase;
 import it.aonoasgard.eastereggs.models.TestaCompleta;
+import it.aonoasgard.eastereggs.requests.HeadRequest;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -29,14 +30,7 @@ public class SkullUtilities {
             Bukkit.getLogger().info(username);
             ItemStack playerhead = new ItemStack(Material.PLAYER_HEAD ,1 );
             SkullMeta skull =(SkullMeta) playerhead.getItemMeta();
-            skull.setOwningPlayer(Bukkit.getPlayer(username));
-            try {
-                Bukkit.getLogger().info(  Bukkit.getPlayer(username).getClass().getName());
-
-            }catch (NullPointerException exc){
-                Bukkit.getLogger().warning("NullPointerException nel getPlayer");
-
-            }
+            skull.setOwningPlayer(Bukkit.getOfflinePlayer(HeadRequest.getUUID(username)));
             playerhead.setItemMeta(skull);
             ItemMeta im = playerhead.getItemMeta();
             String titolo = null;
@@ -67,8 +61,9 @@ public class SkullUtilities {
             int droprate ;
 
             try {
-                droprate = (Integer) confTesta.get("droprate");
+                droprate = Integer.parseInt(confTesta.get("droprate").toString())  ;
             }catch (Exception exc){
+                Bukkit.getLogger().warning("droprate Exception");
                 droprate = -1;
             }
 

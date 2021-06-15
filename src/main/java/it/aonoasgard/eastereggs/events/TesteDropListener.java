@@ -25,8 +25,10 @@ public class TesteDropListener implements Listener {
             List<TestaCompleta> teste = JsonInits.su.teste;
             for(TestaCompleta testa: teste){
                 if(testa.getDroppable()){
-                    if(rand.nextInt(1000)==testa.getDroprate()) {
-                        Bukkit.getLogger().info("Fortuna");
+                    int r= rand.nextInt(1000);
+                    //Bukkit.getLogger().info(String.valueOf(r)+"  -  "+ String.valueOf(testa.getDroprate()));
+                    if(r<=testa.getDroprate()) {
+                        //Bukkit.getLogger().info("Fortuna");
 
                         entity.getLocation().getWorld().dropItem(entity.getLocation(), testa.getItem().clone());
                 }

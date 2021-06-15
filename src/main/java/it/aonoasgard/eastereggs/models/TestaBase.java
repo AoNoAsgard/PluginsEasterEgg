@@ -37,6 +37,10 @@ public class TestaBase {
         this.droprate = droprate;
     }
 
+    public void setDroprate(int droprate) {
+        this.droprate = droprate;
+    }
+
     public String getTitolo() {
         return titolo;
     }
